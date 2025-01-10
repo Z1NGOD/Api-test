@@ -31,11 +31,11 @@ export class PaymentService {
     }
 
     async updateByTransactionId(transactionId: string, status: Status) {
-        await this.orderResopistory.updateByTransactionId(transactionId, status);
+        return await this.orderResopistory.updateByTransactionId(transactionId, status);
     }
 
-    async checkThePaymentStatus(tr_id: string, status: Status) {
-        return await this.orderResopistory.checkThePaymentStatus(tr_id, status);
+    async getStatus(tr_id: string) {
+        return await this.orderResopistory.getStatus(tr_id);
     }
 
     private async AuthClient() {

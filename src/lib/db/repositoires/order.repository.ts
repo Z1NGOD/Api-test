@@ -129,11 +129,8 @@ export class OrderRepository {
         return await this.OrderModel.findOneAndUpdate({ tr_id: transactionId }, { status: status }, { new: true });
     }
 
-    async checkThePaymentStatus(tr_id: string, status: Status) {
-        const checkStatus = (await this.OrderModel.findOne({ tr_id })).status;
-        if (checkStatus === status) {
-            return false;
-        }
+    async getStatus(tr_id: string) {
+        return await this.OrderModel.findOne({ tr_id });
     }
 
     async remove(userId: string, _id: string): Promise<void> {
