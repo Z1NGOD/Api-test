@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Order</title>
+</head>
+<body>
+     <div style="width: 680px;">
+          <a href="https://armatura-outlet.com/" title="Armatura Outlet" target="_blank">
+               <img src="../../../../../web/src/assets/icons/branding-text.svg" alt="Armatura Outlet" style="margin-bottom: 20px; border: none;">
+          </a>
+
+          <p style="margin-top: 0px; margin-bottom: 20px;"> Twoje zamówienie zostało przyjęte do realizacji i wkrótce do Ciebie zadzwonimy, aby wyjaśnić wkrótce, aby wyjaśnić wszystkie szczegóły</p>
+          <table
+               style="border-collapse: collapse; width: 100%; border-top: 1px solid rgb(221, 221, 221); border-left: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
+               <thead>
+                    <tr>
+                         <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(239, 239, 239); font-weight: bold; text-align: left; padding: 7px; color: rgb(34, 34, 34);"
+                              colspan="2"> Szczegóły zamówienia </td>
+                    </tr>
+               </thead>
+               <tbody>
+                    <tr>
+                         <td
+                              style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); text-align: left; padding: 7px;">
+                              <b>Numer zamówienia:</b> <%= order.orderId %><br>
+                              <b>Date:</b> <%= order.createdAt %><br>
+                              <b>Metoda dostawy:</b> <%= order.shippingMethod.name %>
+                         </td>
+                         <td
+                              style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); text-align: left; padding: 7px;">
+                              <b>E-mail:</b>
+                              <a href="mailto:dotsenk20034@gmail.com" target="_blank"><%= order.email %></a>
+                              <br>
+                              <b>Telefon:</b> <a href="tel:+380996126303" target="_blank"><%= order.mobile %></a>
+                              <br>
+                              <b>Stan zamówienia:</b> <%= order.status %>
+                              <br>
+                         </td>
+                    </tr>
+               </tbody>
+          </table>
+          <table
+               style="border-collapse: collapse; width: 100%; border-top: 1px solid rgb(221, 221, 221); border-left: 1px solid rgb(221, 221, 221); margin-bottom: 10px;">
+               <thead>
+                    <tr>
+                         <td
+                              style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(239, 239, 239); font-weight: bold; text-align: left; padding: 7px; color: rgb(34, 34, 34);">
+                              Adres dostawy </td>
+                    </tr>
+               </thead>
+               <tbody>
+                    <tr>
+                         <td
+                              style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); text-align: left; padding: 7px;">
+                              <%= order.firstName %> <%= order.lastName %><br> <%= order.deliveryAddress.country %> <%= order.deliveryAddress.city %> <%= order.deliveryAddress.street %><br> Metoda potwierdzenia zamówienia: Oddzwoń </td>
+                    </tr>
+               </tbody>
+          </table>
+          <table style="border-collapse: collapse; width: 100%; border-top: 1px solid rgb(221, 221, 221); border-left: 1px solid rgb(221, 221, 221); margin-bottom: 20px;">
+               <thead>
+                 <tr>
+                   <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(239, 239, 239); font-weight: bold; text-align: left; padding: 7px; color: rgb(34, 34, 34);" colspan="2"> Produkt </td>
+                   <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(239, 239, 239); font-weight: bold; text-align: right; padding: 7px; color: rgb(34, 34, 34);"> Ilość </td>
+                   <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(239, 239, 239); font-weight: bold; text-align: right; padding: 7px; color: rgb(34, 34, 34);"> Cena </td>
+                   <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); background-color: rgb(239, 239, 239); font-weight: bold; text-align: right; padding: 7px; color: rgb(34, 34, 34);"> Suma </td>
+                 </tr>
+               </thead>
+               <tbody>
+                    <% products.forEach(function(product) { %>
+                         <tr>
+                              <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); text-align: left; padding: 7px;"><img width="130px" height="130px" src="<%= product.product.images[0].url %>" alt="<%= product.product.name.pl %>" alt="<%= product.product.name.pl %>" class="CToWUd" data-bit="iit"></td>
+                              <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); text-align: left; padding: 7px;"> <%= product.product.name.pl %> </td>
+                              <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); text-align: right; padding: 7px;"> <%= product.amount %> </td>
+                              <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); text-align: right; padding: 7px;"> <%= product.product.price %> zł. </td>
+                              <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); text-align: right; padding: 7px;"> <%= product.amount * product.product.price %> zł. </td>
+                         </tr>
+                    <% }); %>
+               </tbody>
+               <tfoot>
+                 <tr>
+                   <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); text-align: right; padding: 7px;" colspan="4"> <b>Łącznie:</b> </td>
+                   <td style="font-size: 12px; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); text-align: right; padding: 7px;"> <%= order.totalPrice %> zł.</td>
+                 </tr>
+               </tfoot>
+             </table>
+          <p style="margin-top: 0px; margin-bottom: 20px;">W razie jakichkolwiek pytań prosimy o odpowiedź na niniejszy list.</p>
+     </div>
+</body>
+</html>
