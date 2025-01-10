@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import mongoose, { HydratedDocument } from "mongoose";
+import { HydratedDocument } from "mongoose";
 import { Cart } from "./cart.schema";
 import { DeliveryAddress, ShippingMethod } from "@common/interfaces";
 import { Status } from "@common/enums";
@@ -13,6 +13,9 @@ export class Order {
 
     @Prop({ required: true })
     orderId: string;
+
+    @Prop({ required: true })
+    tr_id: string;
 
     @Prop({ required: true })
     firstName: string;

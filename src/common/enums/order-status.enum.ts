@@ -1,6 +1,6 @@
 export enum Status {
     Pending = "pending",
-    Seen = "seen",
+    Confirmed = "confirmed",
     Delivering = "delivering",
     Delivered = "delivered",
     Cancelled = "cancelled",

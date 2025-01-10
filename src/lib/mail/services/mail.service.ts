@@ -5,7 +5,7 @@ import { ConfigService } from "@nestjs/config";
 
 interface Products {
     amount: number;
-    product: Product
+    product: Product;
 }
 
 @Injectable()
@@ -34,8 +34,8 @@ export class MailService {
                 order: order,
                 products: products,
             },
-        })
-    };
+        });
+    }
 
     public async onSendForgotPassword(user: User, token: string): Promise<void> {
         await this.mailerService.sendMail({
