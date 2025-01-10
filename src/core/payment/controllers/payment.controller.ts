@@ -9,7 +9,7 @@ import { Status } from "@common/enums";
 export class PaymentController {
     constructor(private readonly payentService: PaymentService) {}
     @Post("notify")
-    async logAndReturnNotification(@Body() body: unknown) {
+    async logAndReturnNotification(@Body() body: any) {
         Logger.log(body);
         // if ((await this.payentService.checkThePaymentStatus(body.tr_id, Status.Confirmed)) === false) return;
         //
