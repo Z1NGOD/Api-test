@@ -1,12 +1,9 @@
-import { ApiTags, ApiOperation, ApiResponse, ApiQuery, ApiBody } from "@nestjs/swagger";
-import { Controller, UseInterceptors, Post, Body, Query, HttpStatus, Get, UseGuards, Req, Res } from "@nestjs/common";
+import { ApiTags, ApiOperation, ApiResponse, ApiBody } from "@nestjs/swagger";
+import { Controller, UseInterceptors, Post, Body, HttpStatus } from "@nestjs/common";
 import { AuthService } from "../services";
-import { AuthResponseDto, ForgotPasswordDto, LoginDto } from "../dto";
+import { AuthResponseDto, LoginDto } from "../dto";
 import { Serialize } from "@common/decorators";
-import { CreateUserDto } from "@core/user/dto";
 import { ResponseInterceptor } from "@common/interceptors/response.interceptor";
-import { GoogleOauthGuardTsGuard } from "@lib/OAuth2/guards/google-oauth.guard";
-import { Request, Response } from "express";
 import { RefreshTokenDto } from "../dto/refresh-token.dto";
 
 @ApiTags("Auth")
@@ -49,17 +46,5 @@ export class AuthController {
             id: user.id,
             email: user.email,
         });
-    }
-
-    @UseGuards(GoogleOauthGuardTsGuard)
-    @Get("google/login")
-    googleLogin() {
-        return "Google Auth";
-    }
-
-    @UseGuards(GoogleOauthGuardTsGuard)
-    @Get("google/callback")
-    async googleCallback(@Req() req: Request, @Res() res: Response) {
-        return await this.authService.googleLogin(req.user, res);
     }
 }
