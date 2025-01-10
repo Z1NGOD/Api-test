@@ -10,7 +10,9 @@ export class PaymentController {
     constructor(private readonly payentService: PaymentService) {}
     @Post("notify")
     async logAndReturnNotification(@Body() body: PaymentNotificationDto, @Headers("X-JWS-Signature") jws: string) {
+        console.log("fire the route");
         const checkStatus = await this.payentService.getStatus(body.tr_id);
+        if (!checkStatus) throw new BadRequestException("No order found");
         if (checkStatus.status === Status.Confirmed) return;
 
         if (!jws) {
