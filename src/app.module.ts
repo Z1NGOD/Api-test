@@ -17,7 +17,7 @@ import { PaymentModule } from "@lib/payment/payment.module";
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true, load: [cloudinaryConfig] }),
-        DbModule,
+        // DbModule,
         // AuthModule,
         // UserModule,
         // SecurityModule,
