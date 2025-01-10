@@ -15,6 +15,7 @@ export class PaymentController {
 
     @Post("notify")
     async logAndReturnNotification(@Body() body, @Headers("x-jws-signature") jws) {
+        console.log(body, jws);
         return {
             body,
             jws,
