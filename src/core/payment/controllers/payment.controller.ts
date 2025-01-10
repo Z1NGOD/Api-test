@@ -9,7 +9,7 @@ import { Status } from "@common/enums";
 export class PaymentController {
     constructor(private readonly payentService: PaymentService) {}
     @Post("notify")
-    async logAndReturnNotification(@Body() body: PaymentNotificationDto, @Headers("x-jws-signature") jws: string) {
+    async logAndReturnNotification(@Body() body: PaymentNotificationDto, @Headers("X-JWS-Signature") jws: string) {
         const checkStatus = await this.payentService.getStatus(body.tr_id);
         if (checkStatus.status === Status.Confirmed) return;
 
