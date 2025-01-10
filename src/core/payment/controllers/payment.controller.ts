@@ -10,7 +10,8 @@ export class PaymentController {
     constructor(private readonly payentService: PaymentService) {}
     @Post("notify")
     async logAndReturnNotification(@Body() body: PaymentNotificationDto, @Headers("x-jws-signature") jws: string) {
-        if ((await this.payentService.getStatus(body.tr_id)).status === Status.Confirmed) return;
+        const checkStatus = await this.payentService.getStatus(body.tr_id);
+        if (checkStatus.status === Status.Confirmed) return;
 
         if (!jws) {
             throw new BadRequestException("no jws");
