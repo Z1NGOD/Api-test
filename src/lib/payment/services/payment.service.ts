@@ -34,6 +34,10 @@ export class PaymentService {
         await this.orderResopistory.updateByTransactionId(transactionId, status);
     }
 
+    async checkThePaymentStatus(tr_id: string, status: Status) {
+        return await this.orderResopistory.checkThePaymentStatus(tr_id, status);
+    }
+
     private async AuthClient() {
         return await lastValueFrom(
             this.httpService.post<PaymentAuthDto>(`${this.configService.get("PAYMENT_API_URL")}/oauth/auth`, {
