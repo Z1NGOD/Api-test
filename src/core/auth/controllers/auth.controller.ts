@@ -15,23 +15,6 @@ import { RefreshTokenDto } from "../dto/refresh-token.dto";
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
-    @Serialize(AuthResponseDto)
-    @Post("registration")
-    @ApiOperation({ summary: "Register a new user" })
-    @ApiBody({ type: CreateUserDto })
-    @ApiResponse({
-        status: HttpStatus.CREATED,
-        description: "User has been successfully registered.",
-    })
-    @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: "Bad Request." })
-    @ApiResponse({
-        status: HttpStatus.INTERNAL_SERVER_ERROR,
-        description: "Internal Server Error.",
-    })
-    registration(@Body() userDto: CreateUserDto) {
-        return this.authService.registration(userDto);
-    }
-
     @Post("login")
     @Serialize(AuthResponseDto)
     @ApiOperation({ summary: "User login" })
@@ -47,43 +30,6 @@ export class AuthController {
     })
     login(@Body() loginDto: LoginDto) {
         return this.authService.login(loginDto);
-    }
-
-    @Post("forgot-password")
-    @ApiOperation({ summary: "Forgot password request" })
-    @ApiBody({ type: ForgotPasswordDto })
-    @ApiResponse({
-        status: HttpStatus.OK,
-        description: "Password reset link has been sent to the email.",
-    })
-    @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: "Bad Request." })
-    @ApiResponse({
-        status: HttpStatus.INTERNAL_SERVER_ERROR,
-        description: "Internal Server Error.",
-    })
-    forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto) {
-        return this.authService.forgotPassword(forgotPasswordDto.email);
-    }
-
-    @Post("reset-password")
-    @ApiOperation({ summary: "Reset password" })
-    @ApiQuery({
-        name: "token",
-        type: String,
-        description: "Password reset token from the email link",
-    })
-    @ApiBody({ type: String })
-    @ApiResponse({
-        status: HttpStatus.OK,
-        description: "Password has been successfully reset.",
-    })
-    @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: "Bad Request." })
-    @ApiResponse({
-        status: HttpStatus.INTERNAL_SERVER_ERROR,
-        description: "Internal Server Error.",
-    })
-    resetPassword(@Query("token") resetToken: string, @Body("password") password: string) {
-        return this.authService.resetPassword(resetToken, password);
     }
 
     @Post("refresh")
