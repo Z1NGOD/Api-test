@@ -9,7 +9,7 @@ export class EmailQueueService {
     constructor(private readonly configService: ConfigService) {
         this.emailQueue = new Queue("email-queue", {
             connection: {
-                url: configService.get<string>("REDIS_URL")
+                url: configService.get<string>("REDIS_URL"),
             },
         });
     }

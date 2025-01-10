@@ -10,6 +10,7 @@ export class PaymentController {
     constructor(private readonly payentService: PaymentService) {}
     @Post("notify")
     async logAndReturnNotification(@Body() body: PaymentNotificationDto, @Headers("x-jws-signature") jws: string) {
+        console.log(body);
         if ((await this.payentService.checkThePaymentStatus(body.tr_id, Status.Confirmed)) === false) return;
 
         if (!jws) {

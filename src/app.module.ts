@@ -8,7 +8,6 @@ import { SecurityModule } from "@lib/security";
 import { CloudinaryModule } from "@lib/cloudinary";
 import { cloudinaryConfig } from "@lib/cloudinary/configs/cloudinary.config";
 import { CommentModule } from "@core/comment/comment.module";
-import { MailModule } from "@lib/mail";
 import { CartModule } from "@core/cart";
 import { CategoryModule } from "@core/category/category.module";
 import { OrderModule } from "./core/order/order.module";
@@ -22,7 +21,6 @@ import { PaymentModule } from "@lib/payment/payment.module";
         UserModule,
         SecurityModule,
         CloudinaryModule,
-        MailModule,
         CommentModule,
         ProductModule,
         CartModule,
