@@ -9,19 +9,19 @@ import { Status } from "@common/enums";
 export class PaymentController {
     constructor(private readonly payentService: PaymentService) {}
     @Post("notify")
-    async logAndReturnNotification(@Body() body: any, @Headers("x-jws-signature") jws: string) {
+    async logAndReturnNotification(@Body() body: unknown) {
         console.log(body);
-        if ((await this.payentService.checkThePaymentStatus(body.tr_id, Status.Confirmed)) === false) return;
-
-        if (!jws) {
-            throw new BadRequestException("no jws");
-        }
-
-        const isValid = await this.payentService.verifyJws(jws);
-
-        if (!isValid) {
-            throw new BadRequestException("Bad jws");
-        }
+        // if ((await this.payentService.checkThePaymentStatus(body.tr_id, Status.Confirmed)) === false) return;
+        //
+        // if (!jws) {
+        //     throw new BadRequestException("no jws");
+        // }
+        //
+        // const isValid = await this.payentService.verifyJws(jws);
+        //
+        // if (!isValid) {
+        //     throw new BadRequestException("Bad jws");
+        // }
 
         if (body.tr_status === "TRUE") {
             const payment = this.payentService.updateByTransactionId(body.tr_id, Status.Confirmed);
