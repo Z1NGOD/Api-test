@@ -13,6 +13,8 @@ export class WebhookController {
         try {
             // Get JWS signature from headers
             const jwsSignature = req.headers["x-jws-signature"];
+            console.log(jwsSignature);
+            console.log(body);
             if (!jwsSignature) {
                 return res.status(400).send("Missing JWS signature");
             }
